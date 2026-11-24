@@ -15,6 +15,7 @@ const styleOptions = [
   { id: 'futuristic', name: 'Futuristic', description: 'Cool light and crisp edges' },
   { id: 'cartoon', name: 'Cartoon', description: 'Playful color and bold outlines' },
   { id: 'hyrule', name: 'Hyrule Quest', description: 'Forest green and legendary adventure' },
+  { id: 'dinosaur', name: 'Dinosaur Jungle', description: 'Tropical skies and prehistoric giants' },
 ]
 const savedStyle = localStorage.getItem('daylist-style')
 const selectedStyle = ref(styleOptions.some((style) => style.id === savedStyle) ? savedStyle : 'midnight')
@@ -117,6 +118,21 @@ async function clearCompleted() {
 
 <template>
   <div class="app-root" :class="[{ 'theme-light': !darkMode }, `style-${selectedStyle}`]">
+  <div v-if="selectedStyle === 'dinosaur'" class="dino-backdrop" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
+      <defs>
+        <linearGradient id="dino-sky" x2="0" y2="1"><stop offset="0" class="sky-top" /><stop offset="1" class="sky-bottom" /></linearGradient>
+        <linearGradient id="dino-hill" x2="0" y2="1"><stop offset="0" class="hill-top" /><stop offset="1" class="hill-bottom" /></linearGradient>
+      </defs>
+      <path class="dino-mountain" d="m0 510 130-178 93 111 143-220 174 248 122-144 184 190 148-243 151 205 118-147 177 226v342H0Z" />
+      <path class="dino-ridge" d="M0 560c186-98 302-49 467 13s286 56 439-3 324-57 534 24v306H0Z" />
+      <path class="dino-canopy" d="M0 705c129-100 301-75 445 9 157 91 322 62 435 7 193-92 367-44 560 32v147H0Z" />
+      <g class="dino-palm palm-left"><path d="M83 900q38-245 9-446" /><path d="M91 460Q-5 422 12 380q38 31 81 65-28-95 4-106 20 55 12 105 51-84 88-59-23 45-88 75 98-42 119-5-40 38-123 35 80 15 84 55-53 3-101-43" /></g>
+      <g class="dino-palm palm-right"><path d="M1355 900q-38-245-9-446" /><path d="M1364 460q96-38 79-80-38 31-81 65 28-95-4-106-20 55-12 105-51-84-88-59 23 45 88 75-98-42-119-5 40 38 123 35-80 15-84 55 53 3 101-43" /></g>
+      <g class="dino-flock"><path d="m0 22 21-17-5 15L48 2l-9 23 23 7-22 3-13 31-5-29-23 9 18-18z" /></g>
+    </svg>
+    <span class="dino-firefly firefly-one"></span><span class="dino-firefly firefly-two"></span><span class="dino-firefly firefly-three"></span>
+  </div>
   <main class="page-shell">
     <header class="topbar">
       <a class="brand" href="#" aria-label="Daylist home">
@@ -124,7 +140,7 @@ async function clearCompleted() {
         <span>daylist</span>
       </a>
       <div class="topbar-actions">
-        <div class="local-note"><span class="status-dot"></span>{{ selectedStyle === 'futuristic' ? 'Droid link stable' : selectedStyle === 'cartoon' ? 'Task buddies on duty' : selectedStyle === 'eighties' ? 'Neon open · 24/7' : selectedStyle === 'hyrule' ? 'Navi is nearby' : 'Saved on this device' }}</div>
+        <div class="local-note"><span class="status-dot"></span>{{ selectedStyle === 'futuristic' ? 'Droid link stable' : selectedStyle === 'cartoon' ? 'Task buddies on duty' : selectedStyle === 'eighties' ? 'Neon open · 24/7' : selectedStyle === 'hyrule' ? 'Navi is nearby' : selectedStyle === 'dinosaur' ? 'Cretaceous skies are clear' : 'Saved on this device' }}</div>
         <button class="login-button" type="button" disabled aria-label="Log in, coming soon">Log in</button>
         <div class="style-picker" @keydown.esc="styleOpen = false">
           <button class="style-picker-trigger" type="button" :aria-expanded="styleOpen" @click="styleOpen = !styleOpen">
@@ -161,14 +177,16 @@ async function clearCompleted() {
         <div v-if="selectedStyle === 'futuristic'" class="future-kicker"><span></span> TEMPORAL OPERATIONS <b>//</b> CHRONO-LINK 07 <i class="future-sidekick" aria-hidden="true"><i></i><i></i><b></b></i></div>
         <div v-if="selectedStyle === 'cartoon'" class="cartoon-kicker"><span class="cartoon-spark">✦</span> THE TASK BUDDIES CLUB <span class="cartoon-mascot-mini" aria-hidden="true">☺</span></div>
         <div v-if="selectedStyle === 'hyrule'" class="hyrule-kicker"><svg viewBox="0 0 36 32" aria-hidden="true"><path d="M18 2 10.5 15h15L18 2Zm-9 16-7 12h14L9 18Zm18 0-7 12h14l-7-12Z" /></svg> HYRULE FIELD JOURNAL <b>·</b> QUEST LOG</div>
+        <div v-if="selectedStyle === 'dinosaur'" class="dino-kicker"><span class="dino-footprint" aria-hidden="true">✣</span> CRETACEOUS FIELD NOTES <b>·</b> DAY 01</div>
         <div v-if="selectedStyle === 'eighties'" class="eighties-kicker"><span class="equalizer"><i></i><i></i><i></i><i></i></span> AFTER HOURS <b>•</b> NEON NIGHTS <span class="kicker-record" aria-hidden="true"></span></div>
         <div class="date-label">{{ selectedStyle === 'futuristic' ? `TIME INDEX // ${todayLabel}` : selectedStyle === 'eighties' ? `NIGHT SHIFT // ${todayLabel}` : todayLabel }}</div>
         <h1 v-if="selectedStyle === 'futuristic'" id="page-title">Your next move,<br /><span>across time.</span></h1>
         <h1 v-else-if="selectedStyle === 'cartoon'" id="page-title">The to-do crew,<br /><span>reporting in!</span></h1>
         <h1 v-else-if="selectedStyle === 'eighties'" id="page-title">Make tonight<br /><span>legendary.</span></h1>
         <h1 v-else-if="selectedStyle === 'hyrule'" id="page-title">A new quest<br /><span>awaits.</span></h1>
+        <h1 v-else-if="selectedStyle === 'dinosaur'" id="page-title">Make today<br /><span>roar-some.</span></h1>
         <h1 v-else id="page-title">A little more<br /><span>organized.</span></h1>
-        <p class="intro">{{ selectedStyle === 'futuristic' ? 'Set your course. Your droid crew is standing by.' : selectedStyle === 'cartoon' ? 'Tiny steps, big adventure. Snacks optional.' : selectedStyle === 'eighties' ? 'Queue up a task. Cue the montage.' : selectedStyle === 'hyrule' ? 'Gather your courage. The forest is listening.' : 'Make room for what matters today.' }}</p>
+        <p class="intro">{{ selectedStyle === 'futuristic' ? 'Set your course. Your droid crew is standing by.' : selectedStyle === 'cartoon' ? 'Tiny steps, big adventure. Snacks optional.' : selectedStyle === 'eighties' ? 'Queue up a task. Cue the montage.' : selectedStyle === 'hyrule' ? 'Gather your courage. The forest is listening.' : selectedStyle === 'dinosaur' ? 'Find your footing. The jungle is waking up.' : 'Make room for what matters today.' }}</p>
       </div>
 
       <form class="add-form" @submit.prevent="addTodo">
@@ -313,8 +331,26 @@ async function clearCompleted() {
           <div class="goddess-labels"><span>DIN</span><span>NAYRU</span><span>FARORE</span></div>
           <span class="fairy-sparkle fairy-sparkle-one">✦</span><span class="fairy-sparkle fairy-sparkle-two">✧</span>
         </div>
+        <div v-else-if="selectedStyle === 'dinosaur'" class="dino-scene" aria-hidden="true">
+          <span class="dino-scene-sun"></span><span class="dino-scene-cloud cloud-one"></span><span class="dino-scene-cloud cloud-two"></span>
+          <svg class="dino-art" viewBox="0 0 260 150">
+            <path class="dino-scene-hill" d="M0 131c35-23 62-20 96-7 34-20 77-15 111 2 20-9 34-10 53-4v28H0Z" />
+            <path class="dino-tree tree-one" d="M19 132V75m0 2L4 97m15-8 15 15m-15-31L8 62m11 5 13-18m-13 5L4 43m15 4 15-16m-15 1L12 17" />
+            <path class="dino-tree tree-two" d="M240 133V88m0 1-12 14m12-23 13 13m-13-18-11-12m11 4 11-16m-11 8-7-17m7 10 11-11" />
+            <path class="stego-tail" d="M70 105c-16-4-25-2-34 7 10 1 17 5 26 9" />
+            <path class="stego-body" d="M66 103c4-24 23-39 57-39 27 0 48 13 57 34l14 10-7 9-23 2H82l-20-7z" />
+            <path class="stego-neck" d="M164 94c8-12 18-23 30-25 11-2 17 7 15 17l-10 21-19 5" />
+            <path class="stego-head" d="M192 71c4-10 10-15 19-14 8 1 12 8 9 16l-11 11-17-4" />
+            <path class="stego-plates" d="M74 80l-1-13 10 8 4-19 10 17 8-24 10 23 12-21 7 23 14-16 3 23 14-9 1 15" />
+            <path class="stego-legs" d="m83 111-3 22h14l7-20m52-1 7 21h14l-7-25" />
+            <circle class="stego-eye" cx="211" cy="67" r="2.5" />
+            <path class="dino-ptero" d="m91 39 11-10-3 9 14-12-5 14 12 4-12 2-7 16-3-15-12 5 9-10z" />
+            <path class="dino-grass" d="m42 135 5-13 5 13m148 0 5-15 5 15m-95 0 4-11 5 11" />
+          </svg>
+          <span class="dino-scene-caption">STEGOSAURUS · EARLY MORNING PATROL</span>
+        </div>
         <div v-else class="empty-illustration" aria-hidden="true"><span class="sun"></span><span class="paper"><i></i><i></i><i></i></span><span class="sparkle">✳</span></div>
-        <h2>{{ selectedStyle === 'futuristic' ? (filter === 'completed' ? 'Archive is standing by' : filter === 'active' ? 'Timeline clear' : 'Awaiting your directive') : selectedStyle === 'cartoon' ? (filter === 'completed' ? 'Hall of done!' : filter === 'active' ? 'All clear, superstar!' : 'Ready, set, little task!') : selectedStyle === 'eighties' ? (filter === 'completed' ? 'Top hits, all done!' : filter === 'active' ? 'Encore! The queue is clear.' : 'Side A: your first track') : selectedStyle === 'hyrule' ? (filter === 'completed' ? 'Triumphs of the realm' : filter === 'active' ? 'The path is clear' : 'Hey! Listen—your quest awaits') : filter === 'completed' ? 'Nothing checked off yet' : filter === 'active' ? 'You’re all caught up' : 'Start with one small thing' }}</h2>
+        <h2>{{ selectedStyle === 'futuristic' ? (filter === 'completed' ? 'Archive is standing by' : filter === 'active' ? 'Timeline clear' : 'Awaiting your directive') : selectedStyle === 'cartoon' ? (filter === 'completed' ? 'Hall of done!' : filter === 'active' ? 'All clear, superstar!' : 'Ready, set, little task!') : selectedStyle === 'eighties' ? (filter === 'completed' ? 'Top hits, all done!' : filter === 'active' ? 'Encore! The queue is clear.' : 'Side A: your first track') : selectedStyle === 'hyrule' ? (filter === 'completed' ? 'Triumphs of the realm' : filter === 'active' ? 'The path is clear' : 'Hey! Listen—your quest awaits') : selectedStyle === 'dinosaur' ? (filter === 'completed' ? 'A mighty day’s haul' : filter === 'active' ? 'The trail is clear' : 'Your next adventure awaits') : filter === 'completed' ? 'Nothing checked off yet' : filter === 'active' ? 'You’re all caught up' : 'Start with one small thing' }}</h2>
         <p>{{ selectedStyle === 'futuristic' ? (filter === 'completed' ? 'Completed missions will be stored here.' : filter === 'active' ? 'No active missions detected. Nice work, captain.' : 'Add a mission and your droid crew will log it.') : selectedStyle === 'cartoon' ? (filter === 'completed' ? 'Your tiny triumphs get their own standing ovation.' : filter === 'active' ? 'The task buddies checked twice. Nothing left to do!' : 'Add a task. The gang promises not to eat the checklist.') : selectedStyle === 'eighties' ? (filter === 'completed' ? 'Your greatest hits are saved for the encore.' : filter === 'active' ? 'Take a victory lap. You earned it.' : 'Drop in a task. The jukebox is all yours.') : selectedStyle === 'hyrule' ? (filter === 'completed' ? 'The sages will remember these deeds.' : filter === 'active' ? 'Take a breath, hero. You have earned it.' : 'Add a quest. Navi will keep watch.') : filter === 'completed' ? 'Finished tasks will find a home here.' : filter === 'active' ? 'Enjoy the breathing room. You’ve earned it.' : 'Add a task above and make today yours.' }}</p>
       </div>
 
