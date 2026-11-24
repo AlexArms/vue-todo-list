@@ -125,6 +125,7 @@ async function clearCompleted() {
       </a>
       <div class="topbar-actions">
         <div class="local-note"><span class="status-dot"></span>{{ selectedStyle === 'futuristic' ? 'Droid link stable' : selectedStyle === 'cartoon' ? 'Task buddies on duty' : selectedStyle === 'eighties' ? 'Neon open · 24/7' : selectedStyle === 'hyrule' ? 'Navi is nearby' : 'Saved on this device' }}</div>
+        <button class="login-button" type="button" disabled aria-label="Log in, coming soon">Log in</button>
         <div class="style-picker" @keydown.esc="styleOpen = false">
           <button class="style-picker-trigger" type="button" :aria-expanded="styleOpen" @click="styleOpen = !styleOpen">
             <span class="style-trigger-label">Style</span>
