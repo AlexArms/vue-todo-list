@@ -353,10 +353,15 @@ h1 span { color: var(--accent); }
   --dino-coral: #ff8d59;
   --dino-sky: #235c69;
   --dino-shadow: #142f2c;
+  --dino-stego-body: #78b95f;
+  --dino-stego-shade: #6da45d;
+  --dino-stego-plate: #ff9861;
+  --dino-stego-plate-shade: #e57850;
+  --dino-stego-outline: #3e7044;
   background-image: radial-gradient(ellipse at 50% 0%, rgb(57 164 146 / 22%), transparent 48%), linear-gradient(180deg, #183b42, #17382f 68%, #142c27);
 }
 .style-dinosaur:not(.theme-light) { --page: #17352f; --surface: #213e35; --surface-raised: #28483a; --surface-input: #17312d; --ink: #fff1cf; --text: #e1e9c9; --muted: #b1c8a2; --faint: #9cb58f; --line-soft: rgb(104 173 101 / 30%); --accent-soft: rgb(255 184 74 / 16%); --focus: #ffd075; --login-ink: #352617; }
-.style-dinosaur.theme-light { --page: #d9e9c6; --surface: #f4f1d8; --surface-raised: #ecedcf; --surface-input: #fff8df; --ink: #243d30; --text: #3e5940; --muted: #6f8966; --faint: #849878; --line: #afc69a; --line-soft: #d4dfc5; --accent: #bc642d; --accent-dark: #a94f25; --accent-soft: #f7dfb5; --focus: #a45e37; --login-ink: #fff7e3; --dino-leaf: #438448; --dino-coral: #d96b42; --dino-sky: #a8d5cc; --dino-shadow: #526f4d; background-image: radial-gradient(ellipse at 50% 0%, rgb(255 205 117 / 33%), transparent 46%), linear-gradient(180deg, #b9ded2, #dbe9c6 70%, #c6dfaa); }
+.style-dinosaur.theme-light { --page: #d9e9c6; --surface: #f4f1d8; --surface-raised: #ecedcf; --surface-input: #fff8df; --ink: #243d30; --text: #3e5940; --muted: #6f8966; --faint: #849878; --line: #afc69a; --line-soft: #d4dfc5; --accent: #bc642d; --accent-dark: #a94f25; --accent-soft: #f7dfb5; --focus: #a45e37; --login-ink: #fff7e3; --dino-leaf: #438448; --dino-coral: #d96b42; --dino-sky: #a8d5cc; --dino-shadow: #526f4d; --dino-stego-body: #78ad51; --dino-stego-shade: #6f9d50; --dino-stego-plate: #e9784e; --dino-stego-plate-shade: #cb5f43; --dino-stego-outline: #456e3d; background-image: radial-gradient(ellipse at 50% 0%, rgb(255 205 117 / 33%), transparent 46%), linear-gradient(180deg, #b9ded2, #dbe9c6 70%, #c6dfaa); }
 .style-dinosaur .page-shell { position: relative; z-index: 1; }
 .style-dinosaur .dino-backdrop { position: fixed; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; }
 .style-dinosaur .dino-backdrop svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .53; }
@@ -395,29 +400,40 @@ h1 span { color: var(--accent); }
 .style-dinosaur .done .check-button { border-color: var(--dino-leaf); background: var(--dino-leaf); }
 .style-dinosaur .todo-item:hover .todo-title { color: var(--dino-coral); }
 .style-dinosaur .card-footer { border-radius: 0 0 18px 18px; }
-.style-dinosaur .dino-scene { position: relative; display: flex; width: min(100%, 300px); min-height: 173px; flex-direction: column; align-items: center; justify-content: flex-start; margin: -10px 0 4px; }
+.style-dinosaur .dino-scene { position: relative; display: flex; width: min(100%, 300px); min-height: 198px; flex-direction: column; align-items: center; justify-content: flex-start; margin: -10px 0 4px; }
 .style-dinosaur .dino-scene-sun { position: absolute; top: 6px; width: 88px; height: 88px; border-radius: 50%; background: radial-gradient(circle, rgb(255 194 101 / 38%), rgb(255 194 101 / 8%) 57%, transparent 72%); }
 .style-dinosaur .dino-scene-cloud { position: absolute; z-index: 1; top: 22px; width: 12px; height: 7px; border-top: 1px solid var(--muted); border-radius: 50%; opacity: .7; }
 .style-dinosaur .cloud-one { left: 42px; }.style-dinosaur .cloud-two { right: 48px; top: 38px; transform: scale(.75); }
-.style-dinosaur .dino-art { position: relative; z-index: 2; width: min(100%, 260px); height: 150px; overflow: visible; filter: drop-shadow(0 6px 8px rgb(7 24 20 / 24%)); }
+.style-dinosaur .dino-landscape { position: absolute; z-index: 1; bottom: 20px; width: min(100%, 260px); height: 150px; overflow: visible; }
+.style-dinosaur .stego-art { position: relative; z-index: 2; width: min(100%, 225px); height: auto; overflow: visible; margin: -28px 0 -28px; filter: drop-shadow(0 6px 7px rgb(7 24 20 / 24%)); }
 .style-dinosaur .dino-scene-hill { fill: var(--surface-raised); }
 .style-dinosaur .dino-tree { fill: none; stroke: var(--dino-leaf); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; opacity: .72; }
 .style-dinosaur .tree-two { stroke: var(--dino-coral); opacity: .55; }
-.style-dinosaur .stego-tail, .style-dinosaur .stego-legs { fill: none; stroke: #7b5a39; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
-.style-dinosaur.theme-light .stego-tail, .style-dinosaur.theme-light .stego-legs { stroke: #6c5035; }
-.style-dinosaur .stego-body { fill: #68ad65; stroke: #356d49; stroke-width: 2.5; stroke-linejoin: round; }
-.style-dinosaur.theme-light .stego-body { fill: #75a955; stroke: #496f3d; }
-.style-dinosaur .stego-neck, .style-dinosaur .stego-head { fill: #82bc69; stroke: #356d49; stroke-width: 2.5; stroke-linejoin: round; }
-.style-dinosaur.theme-light .stego-neck, .style-dinosaur.theme-light .stego-head { fill: #94bd63; stroke: #496f3d; }
-.style-dinosaur .stego-plates { fill: #ff8d59; stroke: #9a563d; stroke-width: 2; stroke-linejoin: round; }
-.style-dinosaur.theme-light .stego-plates { fill: #e77d4e; stroke: #9e533a; }
-.style-dinosaur .stego-eye { fill: #243d30; }.style-dinosaur.theme-light .stego-eye { fill: #263c2d; }
-.style-dinosaur .dino-ptero { fill: none; stroke: var(--dino-coral); stroke-width: 2.5; stroke-linecap: round; animation: ptero-flap 2.2s ease-in-out infinite; transform-origin: 130px 40px; }
+.style-dinosaur .stego-character { transform-box: fill-box; transform-origin: center bottom; animation: stego-bob 2.8s ease-in-out infinite; }
+.style-dinosaur .stego-body { fill: var(--dino-stego-body); stroke: var(--dino-stego-outline); stroke-width: 3; stroke-linejoin: round; }
+.style-dinosaur .stego-body-shade { fill: var(--dino-stego-shade); opacity: .38; }
+.style-dinosaur .stego-plate { fill: var(--dino-stego-plate); stroke: var(--dino-stego-outline); stroke-width: 1.8; stroke-linejoin: round; transform-box: fill-box; transform-origin: center bottom; animation: stego-plate-bob 3.2s ease-in-out infinite; }
+.style-dinosaur .stego-plate:nth-of-type(2), .style-dinosaur .stego-plate:nth-of-type(4) { animation-delay: -.8s; }
+.style-dinosaur .plate-shade { fill: var(--dino-stego-plate-shade); stroke: var(--dino-stego-outline); }
+.style-dinosaur .plate-gold { fill: #ffd16f; stroke: #a56b43; }
+.style-dinosaur .stego-far-leg, .style-dinosaur .stego-near-leg { stroke: var(--dino-stego-outline); stroke-width: 2; stroke-linejoin: round; }
+.style-dinosaur .stego-far-leg { fill: var(--dino-stego-shade); }.style-dinosaur .stego-near-leg { fill: var(--dino-stego-body); }
+.style-dinosaur .stego-source-eye { opacity: 0; }.style-dinosaur .stego-pupil { fill: #253b31; }
+.style-dinosaur .stego-spot { fill: #b6d981; opacity: .8; }
+.style-dinosaur .spot-three { fill: #f5cd78; }
+.style-dinosaur .stego-shade-detail { fill: var(--dino-stego-shade); opacity: .75; }
+.style-dinosaur .stego-eye { transform-box: fill-box; transform-origin: center; animation: stego-blink 5.2s ease-in-out infinite; }
+.style-dinosaur .stego-eye-white { fill: #fff9e9; stroke: var(--dino-stego-outline); stroke-width: 1.5; }
+.style-dinosaur .stego-eye-shine { fill: #fff; }
+.style-dinosaur .stego-cheek { fill: #f28d76; opacity: .9; }
+.style-dinosaur .stego-smile { fill: none; stroke: var(--dino-stego-outline); stroke-width: 2; stroke-linecap: round; }
 .style-dinosaur .dino-grass { fill: none; stroke: var(--dino-leaf); stroke-width: 2; stroke-linecap: round; }
 .style-dinosaur .dino-scene-caption { z-index: 2; margin-top: -2px; color: var(--muted); font-size: 7px; font-weight: 800; letter-spacing: 1.2px; }
-@keyframes ptero-drift { 0% { transform: translate(700px, 145px); } 50% { transform: translate(748px, 133px); } 100% { transform: translate(678px, 157px); } }
-@keyframes ptero-flap { 0%, 100% { transform: rotate(0) scaleY(1); } 50% { transform: rotate(-4deg) scaleY(.82); } }
+@keyframes ptero-drift { 0% { transform: translateX(0); } 50% { transform: translate(36px, -12px); } 100% { transform: translate(-22px, 10px); } }
 @keyframes firefly-float { from { transform: translate(0, 0); opacity: .45; } to { transform: translate(12px, -17px); opacity: .95; } }
+@keyframes stego-bob { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-3px) rotate(-.5deg); } }
+@keyframes stego-plate-bob { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-3deg); } }
+@keyframes stego-blink { 0%, 44%, 48%, 100% { transform: scaleY(1); } 46% { transform: scaleY(.08); } }
 
 .style-midnight .login-button { border-radius: 9px; background: var(--accent); color: var(--login-ink); box-shadow: 0 2px 8px var(--accent-soft); }
 .style-eighties .login-button { border-color: var(--neon-cyan); border-radius: 4px; background: var(--accent); color: #190d28; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; box-shadow: 0 0 12px var(--accent-soft); }

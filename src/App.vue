@@ -129,7 +129,7 @@ async function clearCompleted() {
       <path class="dino-canopy" d="M0 705c129-100 301-75 445 9 157 91 322 62 435 7 193-92 367-44 560 32v147H0Z" />
       <g class="dino-palm palm-left"><path d="M83 900q38-245 9-446" /><path d="M91 460Q-5 422 12 380q38 31 81 65-28-95 4-106 20 55 12 105 51-84 88-59-23 45-88 75 98-42 119-5-40 38-123 35 80 15 84 55-53 3-101-43" /></g>
       <g class="dino-palm palm-right"><path d="M1355 900q-38-245-9-446" /><path d="M1364 460q96-38 79-80-38 31-81 65 28-95-4-106-20 55-12 105-51-84-88-59 23 45 88 75-98-42-119-5 40 38 123 35-80 15-84 55 53 3 101-43" /></g>
-      <g class="dino-flock"><path d="m0 22 21-17-5 15L48 2l-9 23 23 7-22 3-13 31-5-29-23 9 18-18z" /></g>
+      <g class="dino-flock"><g transform="translate(700 145)"><path d="m0 22 21-17-5 15L48 2l-9 23 23 7-22 3-13 31-5-29-23 9 18-18z" /></g></g>
     </svg>
     <span class="dino-firefly firefly-one"></span><span class="dino-firefly firefly-two"></span><span class="dino-firefly firefly-three"></span>
   </div>
@@ -333,19 +333,40 @@ async function clearCompleted() {
         </div>
         <div v-else-if="selectedStyle === 'dinosaur'" class="dino-scene" aria-hidden="true">
           <span class="dino-scene-sun"></span><span class="dino-scene-cloud cloud-one"></span><span class="dino-scene-cloud cloud-two"></span>
-          <svg class="dino-art" viewBox="0 0 260 150">
+          <svg class="dino-landscape" viewBox="0 0 260 150">
             <path class="dino-scene-hill" d="M0 131c35-23 62-20 96-7 34-20 77-15 111 2 20-9 34-10 53-4v28H0Z" />
             <path class="dino-tree tree-one" d="M19 132V75m0 2L4 97m15-8 15 15m-15-31L8 62m11 5 13-18m-13 5L4 43m15 4 15-16m-15 1L12 17" />
             <path class="dino-tree tree-two" d="M240 133V88m0 1-12 14m12-23 13 13m-13-18-11-12m11 4 11-16m-11 8-7-17m7 10 11-11" />
-            <path class="stego-tail" d="M70 105c-16-4-25-2-34 7 10 1 17 5 26 9" />
-            <path class="stego-body" d="M66 103c4-24 23-39 57-39 27 0 48 13 57 34l14 10-7 9-23 2H82l-20-7z" />
-            <path class="stego-neck" d="M164 94c8-12 18-23 30-25 11-2 17 7 15 17l-10 21-19 5" />
-            <path class="stego-head" d="M192 71c4-10 10-15 19-14 8 1 12 8 9 16l-11 11-17-4" />
-            <path class="stego-plates" d="M74 80l-1-13 10 8 4-19 10 17 8-24 10 23 12-21 7 23 14-16 3 23 14-9 1 15" />
-            <path class="stego-legs" d="m83 111-3 22h14l7-20m52-1 7 21h14l-7-25" />
-            <circle class="stego-eye" cx="211" cy="67" r="2.5" />
-            <path class="dino-ptero" d="m91 39 11-10-3 9 14-12-5 14 12 4-12 2-7 16-3-15-12 5 9-10z" />
             <path class="dino-grass" d="m42 135 5-13 5 13m148 0 5-15 5 15m-95 0 4-11 5 11" />
+          </svg>
+          <!-- Adapted from the supplied SVG Repo artwork: https://www.svgrepo.com/svg/94546/stegosaurus/ (license listed as unknown). -->
+          <svg class="stego-art" viewBox="0 0 376.697 376.697">
+            <g class="stego-character">
+              <path class="stego-plate plate-main" d="M142.029,133.088c0-19.618,48.008-63.198,48.008-63.198s48.006,43.58,48.006,63.198C238.043,138.907,142.029,138.894,142.029,133.088z" />
+              <path class="stego-plate plate-shade" d="M190.037,69.89L190.036,137.447c24.003,0.002,48.007-1.45,48.007-4.359C238.043,113.47,190.037,69.89,190.037,69.89z" />
+              <path class="stego-plate" d="M217.545,127.686c8.665-12.89,59.456-20.319,59.456-20.319s12.293,49.837,3.628,62.727C278.059,173.917,214.981,131.5,217.545,127.686z" />
+              <path class="stego-plate plate-gold" d="M260.727,157.165c8.078-8.078,45.793-6.255,45.793-6.255s1.823,37.714-6.256,45.793C297.869,199.098,258.337,159.555,260.727,157.165z" />
+              <path class="stego-plate plate-gold" d="M117.201,150.769c-8.078-8.078-45.793-6.255-45.793-6.255s-1.823,37.714,6.256,45.793C80.059,192.703,119.591,153.16,117.201,150.769z" />
+              <path class="stego-plate" d="M164.838,126.316c-9.057-12.617-60.054-18.48-60.054-18.48s-10.753,50.192-1.696,62.809C105.775,174.387,167.519,130.05,164.838,126.316z" />
+              <path class="stego-far-leg" d="M233.468,306.589h-4.701c-8.437,0-15.277-6.84-15.277-15.277V243.61h35.255v47.702C248.745,299.749,241.905,306.589,233.468,306.589z" />
+              <path class="stego-near-leg" d="M273.071,301.328h-4.701c-8.437,0-15.277-6.84-15.277-15.277v-47.702h35.255v47.702C288.349,294.488,281.509,301.328,273.071,301.328z" />
+              <path class="stego-far-leg" d="M126.35,306.218l-4.521-1.288c-8.114-2.312-12.818-10.765-10.505-18.879l13.074-45.875l33.905,9.662l-13.074,45.875C142.917,303.827,134.464,308.53,126.35,306.218z" />
+              <path class="stego-near-leg" d="M173.579,306.589h-4.701c-8.437,0-15.277-6.84-15.277-15.277V243.61h35.255v47.702C188.856,299.749,182.017,306.589,173.579,306.589z" />
+              <path class="stego-body" d="M376.697,166.807c-88.333,48.667-93.667-16.333-150-40c-102.646-43.123-101,61.667-170,60c-47.486-1.147-67.661,36.042-50.844,59.756c9.726,13.714,29.138,14.189,40,10.244c59.667-21.667,80.285,29.344,90.844,20c9.061-8.019,39.833,5.133,54.963,5.133c4.95,0,54.049-10.8,55.037-25.133C305.413,242.201,352.656,207.586,376.697,166.807L376.697,166.807z" />
+              <path class="stego-body-shade" d="M226.697,126.807c-14.022-5.891-26.086-9.005-36.661-10.024v165.109c0.558,0.03,1.102,0.049,1.624,0.049c4.95,0,55.701-9.258,56.689-23.591c58.716-14.606,104.307-50.763,128.349-91.542C288.364,215.473,283.03,150.473,226.697,126.807z" />
+              <path class="stego-source-eye" d="M34.611,216.807c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6S37.919,216.807,34.611,216.807z" />
+              <circle class="stego-spot spot-one" cx="185.036" cy="143.349" r="15" />
+              <circle class="stego-spot spot-two" cx="170.036" cy="168.349" r="10" />
+              <circle class="stego-spot spot-three" cx="220.036" cy="158.349" r="10" />
+              <path class="stego-shade-detail" d="M190.036,129.22v28.256c5.822-2.061,10-7.6,10-14.128 C200.036,136.82,195.858,131.282,190.036,129.22z" />
+              <g class="stego-eye">
+                <ellipse class="stego-eye-white" cx="34.5" cy="221.5" rx="10" ry="12" />
+                <circle class="stego-pupil" cx="32.5" cy="222" r="5.2" />
+                <circle class="stego-eye-shine" cx="30.5" cy="218.5" r="2.2" />
+              </g>
+              <circle class="stego-cheek" cx="51" cy="237" r="6.5" />
+              <path class="stego-smile" d="M41 241q8 10 17 0" />
+            </g>
           </svg>
           <span class="dino-scene-caption">STEGOSAURUS · EARLY MORNING PATROL</span>
         </div>
